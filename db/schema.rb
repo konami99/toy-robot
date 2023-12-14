@@ -30,11 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_14_054343) do
   end
 
   create_table "robots", force: :cascade do |t|
-    t.integer "cell_id", null: false
     t.string "direction", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cell_id"], name: "index_robots_on_cell_id"
   end
 
   add_foreign_key "cells", "cells", column: "east_id"
@@ -42,5 +40,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_14_054343) do
   add_foreign_key "cells", "cells", column: "south_id"
   add_foreign_key "cells", "cells", column: "west_id"
   add_foreign_key "cells", "robots"
-  add_foreign_key "robots", "cells"
 end
