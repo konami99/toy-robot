@@ -67,6 +67,15 @@ body {
   }
 }
 
-.animate-flash-border {
-  animation: flash-border 1s infinite;
+#report-frame {
+  display: block;
+  margin-bottom: 0.5em;
+
+  #output {
+    &.animate-flash-border {
+      animation: flash-border 1s infinite;
+    }
+
+    text-align: center;
+  }
 }
