@@ -6,18 +6,11 @@ class TablesController < ApplicationController
   end
 
   def place
-    x = params[:x]
-    y = params[:y]
-    direction = params[:direction].downcase
-    
-    Cell.all.each do |c|
-      c.update(robot: nil)
-    end
-
-    Robot.destroy_all
-    r = Robot.create(direction: direction)
-    c = Cell.where(x: x, y: y).first
-    c.update(robot: r)
+    RobotService.place(
+      x_pos: params[:x],
+      y_pos: params[:y],
+      direction: params[:direction]
+    )
 
     respond_to do |format|
       format.turbo_stream
@@ -25,17 +18,7 @@ class TablesController < ApplicationController
   end
 
   def move
-    robot = Robot.first
-    if robot
-      direction = robot.reload.direction
-      robot_current_cell = robot.reload.cell
-
-      new_cell = robot_current_cell.send(direction)
-      if new_cell
-        robot_current_cell.update(robot: nil)
-        new_cell.update(robot: robot)
-      end
-    end
+    RobotService.move
 
     respond_to do |format|
       format.turbo_stream
@@ -43,8 +26,7 @@ class TablesController < ApplicationController
   end
 
   def turn_right
-    robot = Robot.first
-    robot.turn_right
+    RobotService.turn_right
 
     respond_to do |format|
       format.turbo_stream
@@ -52,8 +34,7 @@ class TablesController < ApplicationController
   end
 
   def turn_left
-    robot = Robot.first
-    robot.turn_left
+    RobotService.turn_left
 
     respond_to do |format|
       format.turbo_stream
@@ -61,6 +42,6 @@ class TablesController < ApplicationController
   end
 
   def report
-    @robot = Robot.first
+    @robot = RobotService.report
   end
 end
