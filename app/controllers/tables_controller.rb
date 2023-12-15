@@ -1,10 +1,6 @@
 class TablesController < ApplicationController
   include Turbo::Streams::ActionHelper
 
-  def index
-    
-  end
-
   def place
     RobotService.place(
       x_pos: params[:x],
@@ -13,7 +9,9 @@ class TablesController < ApplicationController
     )
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(:'table-frame', partial: 'tables/table')
+      end
     end
   end
 
@@ -21,7 +19,9 @@ class TablesController < ApplicationController
     RobotService.move
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(:'table-frame', partial: 'tables/table')
+      end
     end
   end
 
@@ -29,7 +29,9 @@ class TablesController < ApplicationController
     RobotService.turn_right
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(:'table-frame', partial: 'tables/table')
+      end
     end
   end
 
@@ -37,11 +39,17 @@ class TablesController < ApplicationController
     RobotService.turn_left
 
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(:'table-frame', partial: 'tables/table')
+      end
     end
   end
 
   def report
     @robot = RobotService.report
+
+    respond_to do |format|
+      format.turbo_stream
+    end
   end
 end

@@ -1,0 +1,5 @@
+<div class="board my-0 mx-auto">
+  <% Cell.all.order(order: :asc).each do |c| %>
+    <div id="<%= c.id %>" class="cell <% if c.robot %><%= "t2-#{c.robot.direction}" %><% end %>"></div>
+  <% end %>
+</div>
