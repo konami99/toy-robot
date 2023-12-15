@@ -21,8 +21,24 @@
   cursor: pointer;
 }
 
-.circle::after {
+.t2::after {
   content: url("../../../t2.png")
+}
+
+.t2-east::after {
+  content: url("../../../t2-east.png")
+}
+
+.t2-south::after {
+  content: url("../../../t2-south.png")
+}
+
+.t2-west::after {
+  content: url("../../../t2-west.png")
+}
+
+.t2-north::after {
+  content: url("../../../t2-north.png")
 }
 
 .cross::after {

@@ -2,36 +2,18 @@
 <html>
 	<head>
 	</head>
-	<body>
+	<body data-controller="table">
 		<div>
-      <div class="board my-0 mx-auto">
-        <div id="cell_0" class="cell"></div>
-        <div id="cell_1" class="cell"></div>
-        <div id="cell_2" class="cell"></div>
-        <div id="cell_3" class="cell"></div>
-        <div id="cell_4" class="cell"></div>
-        <div id="cell_5" class="cell"></div>
-        <div id="cell_6" class="cell"></div>
-        <div id="cell_7" class="cell"></div>
-        <div id="cell_8" class="cell"></div>
-        <div id="cell_9" class="cell"></div>
-        <div id="cell_10" class="cell"></div>
-        <div id="cell_11" class="cell"></div>
-        <div id="cell_12" class="cell"></div>
-        <div id="cell_13" class="cell"></div>
-        <div id="cell_14" class="cell"></div>
-        <div id="cell_15" class="cell"></div>
-        <div id="cell_16" class="cell"></div>
-        <div id="cell_17" class="cell"></div>
-        <div id="cell_18" class="cell"></div>
-        <div id="cell_19" class="cell"></div>
-        <div id="cell_20" class="cell"></div>
-        <div id="cell_21" class="cell"></div>
-        <div id="cell_22" class="cell"></div>
-        <div id="cell_23" class="cell"></div>
-        <div id="cell_24" class="cell"></div>
-      </div>
+      <%= turbo_frame_tag('table-frame') do %>
+        <div class="board my-0 mx-auto">
+          <% Cell.all.order(order: :asc).each do |c| %>
+            <div id="<%= c.id %>" class="cell <% if c.robot %><%= "t2-#{c.robot.direction}" %><% end %>"></div>
+          <% end %>
+        </div>
+      <% end %>
 		</div>
+    <textarea id="command" cols="40" rows="5"></textarea>
+    <button type="button" data-action="click->table#run">RUN</button>
 		<script>
 			
 		</script>
