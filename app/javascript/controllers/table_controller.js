@@ -9,6 +9,23 @@ export default class extends Controller {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  async reset(e) {
+    const csrfToken = document.querySelector("[name='csrf-token']").content;
+
+    fetch(`/tables/reset`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      }
+    })
+    .then (response => response.text())
+    .then(html => Turbo.renderStreamMessage(html));
+  }
+
   async run(e) {
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     const commands = document.getElementById('command').value

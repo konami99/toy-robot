@@ -1,6 +1,16 @@
 class TablesController < ApplicationController
   include Turbo::Streams::ActionHelper
 
+  def reset
+    RobotService.reset
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(:'table-frame', partial: 'tables/table')
+      end
+    end
+  end
+
   def place
     RobotService.place(
       x_pos: params[:x],

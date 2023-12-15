@@ -79,3 +79,7 @@ body {
     text-align: center;
   }
 }
+
+#reset {
+  margin-top: 0.7em;
+}

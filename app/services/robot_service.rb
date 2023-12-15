@@ -1,4 +1,12 @@
 class RobotService
+  def self.reset
+    Cell.all.each do |cell|
+      cell.update(robot: nil)
+    end
+
+    Robot.destroy_all
+  end
+
   def self.place(x_pos:, y_pos:, direction:)
     Cell.all.each do |cell|
       cell.update(robot: nil)
