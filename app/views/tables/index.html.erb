@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	</head>
-	<body data-controller="table">
-		<div>
-      <%= turbo_frame_tag('table-frame') do %>
-        <div class="board my-0 mx-auto">
-          <% Cell.all.order(order: :asc).each do |c| %>
-            <div id="<%= c.id %>" class="cell <% if c.robot %><%= "t2-#{c.robot.direction}" %><% end %>"></div>
-          <% end %>
-        </div>
+<div>
+  <%= turbo_frame_tag('table-frame') do %>
+    <div class="board my-0 mx-auto">
+      <% Cell.all.order(order: :asc).each do |c| %>
+        <div id="<%= c.id %>" class="cell <% if c.robot %><%= "t2-#{c.robot.direction}" %><% end %>"></div>
       <% end %>
-		</div>
-    <textarea id="command" cols="40" rows="5"></textarea>
-    <button type="button" data-action="click->table#run">RUN</button>
-		<script>
-			
-		</script>
-	</body>
-</html>
+    </div>
+  <% end %>
+</div>
+<div>
+  <textarea class="w-full" id="command" cols="20" rows="20"></textarea>
+  <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" data-action="click->table#run">RUN</button>
+</div>
+<script>
+  
+</script>
