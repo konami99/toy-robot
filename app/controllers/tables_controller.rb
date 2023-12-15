@@ -41,4 +41,22 @@ class TablesController < ApplicationController
       format.turbo_stream
     end
   end
+
+  def turn_right
+    robot = Robot.first
+    robot.turn_right
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def turn_left
+    robot = Robot.first
+    robot.turn_left
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 end

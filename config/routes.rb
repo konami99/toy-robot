@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   post '/tables/place', to: 'tables#place'
   post '/tables/move', to: 'tables#move'
+  post '/tables/turn_right', to: 'tables#turn_right'
+  post '/tables/turn_left', to: 'tables#turn_left'
 
   root "tables#index"
 end
