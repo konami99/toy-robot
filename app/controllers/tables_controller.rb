@@ -59,4 +59,8 @@ class TablesController < ApplicationController
       format.turbo_stream
     end
   end
+
+  def report
+    @robot = Robot.first
+  end
 end

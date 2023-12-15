@@ -1,0 +1,11 @@
+<%= turbo_stream.update('table-frame') do %>
+  <div class="board my-0 mx-auto">
+    <% Cell.all.order(order: :asc).each do |c| %>
+      <div id="<%= c.id %>" class="cell <% if c.robot %><%= "t2-#{c.robot.direction}" %><% end %>"></div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= turbo_stream.update('report-frame') do %>
+  <div id="output" class="border border-red-500 animate-flash-border"><%= "#{@robot.cell.x},#{@robot.cell.y},#{@robot.direction}" %></div>
+<% end %>

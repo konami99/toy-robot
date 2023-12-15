@@ -7,9 +7,10 @@
     </div>
   <% end %>
 </div>
-<div>
+<div class="ml-2.5">
   <textarea class="w-full" id="command" cols="20" rows="20"></textarea>
-  <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="button" data-action="click->table#run">RUN</button>
+  <%= turbo_frame_tag('report-frame') %>
+  <button id="run" class="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="button" data-action="click->table#run">RUN</button>
 </div>
 <script>
   

@@ -14,6 +14,16 @@ export default class extends Controller {
     const commands = document.getElementById('command').value
     const commandsArray = commands.split('\n')
 
+    const output = document.getElementById('output');
+    if (output) {
+      output.remove();
+    }
+
+    const run = document.getElementById('run');
+    if (run) {
+      run.textContent = 'RUNNING....';
+    }
+
     for (const command of commandsArray) {
       const commandArray = command.split(' ');
       const header = commandArray[0] //PLACE, MOVE, etc
@@ -68,7 +78,7 @@ export default class extends Controller {
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
       } else if (header === 'RIGHT') {
-        await this.sleep(10000)
+        await this.sleep(5000)
         fetch(`/tables/turn_right`, {
           method: 'POST',
           mode: 'cors',
@@ -81,9 +91,25 @@ export default class extends Controller {
         })
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
-      } 
+      } else if (header === 'REPORT') {
+        await this.sleep(5000)
+        fetch(`/tables/report`, {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken,
+          }
+        })
+        .then (response => response.text())
+        .then(html => Turbo.renderStreamMessage(html));
+      }
     }
     
-    
+    if (run) {
+      run.textContent = 'RUN';
+    }
   }
 }
