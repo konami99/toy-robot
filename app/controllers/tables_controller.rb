@@ -23,4 +23,22 @@ class TablesController < ApplicationController
       format.turbo_stream
     end
   end
+
+  def move
+    robot = Robot.first
+    if robot
+      direction = robot.reload.direction
+      robot_current_cell = robot.reload.cell
+
+      new_cell = robot_current_cell.send(direction)
+      if new_cell
+        robot_current_cell.update(robot: nil)
+        new_cell.update(robot: robot)
+      end
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 end

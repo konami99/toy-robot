@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   post '/tables/place', to: 'tables#place'
+  post '/tables/move', to: 'tables#move'
 
   root "tables#index"
 end
