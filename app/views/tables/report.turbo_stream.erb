@@ -8,6 +8,6 @@
 
 <% if @robot %>
   <%= turbo_stream.update('report-frame') do %>
-    <div id="output" class="border border-red-500 animate-flash-border"><%= "#{@robot.cell.x},#{@robot.cell.y},#{@robot.direction}" %></div>
+    <div id="output" class="border border-red-500 animate-flash-border"><%= "#{@robot.cell.x},#{@robot.cell.y},#{@robot.direction.upcase}" %></div>
   <% end %>
 <% end %>
