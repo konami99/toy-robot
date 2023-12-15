@@ -35,7 +35,7 @@ export default class extends Controller {
         const y = params[1]
         const direction = params[2]
 
-        await this.sleep(5000)
+        await this.sleep(2000)
         fetch(`/tables/place`, {
           method: 'POST',
           mode: 'cors',
@@ -50,7 +50,7 @@ export default class extends Controller {
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
       } else if (header === 'MOVE') {
-        await this.sleep(5000)
+        await this.sleep(2000)
         fetch(`/tables/move`, {
           method: 'POST',
           mode: 'cors',
@@ -64,7 +64,7 @@ export default class extends Controller {
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
       } else if (header === 'LEFT') {
-        await this.sleep(5000)
+        await this.sleep(2000)
         fetch(`/tables/turn_left`, {
           method: 'POST',
           mode: 'cors',
@@ -78,7 +78,7 @@ export default class extends Controller {
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
       } else if (header === 'RIGHT') {
-        await this.sleep(5000)
+        await this.sleep(2000)
         fetch(`/tables/turn_right`, {
           method: 'POST',
           mode: 'cors',
@@ -92,7 +92,7 @@ export default class extends Controller {
         .then (response => response.text())
         .then(html => Turbo.renderStreamMessage(html));
       } else if (header === 'REPORT') {
-        await this.sleep(5000)
+        await this.sleep(2000)
         fetch(`/tables/report`, {
           method: 'POST',
           mode: 'cors',
