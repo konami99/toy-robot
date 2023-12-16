@@ -8,14 +8,17 @@ class RobotService
   end
 
   def self.place(x_pos:, y_pos:, direction:)
-    Cell.all.each do |cell|
-      cell.update(robot: nil)
-    end
-
-    Robot.destroy_all
-    robot = Robot.create(direction: direction.downcase)
     cell = Cell.find_by(x: x_pos, y: y_pos)
-    cell.update(robot: robot)
+
+    if cell
+      Cell.all.each do |cell|
+        cell.update(robot: nil)
+      end
+
+      Robot.destroy_all
+      robot = Robot.create(direction: direction.downcase)
+      cell.update(robot: robot)
+    end
   end
 
   def self.move
