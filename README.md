@@ -1,24 +1,31 @@
-# README
+# Toy Robot
+Implemented in Rails and Hotwire.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For the rules of the game, see `toy_robot.md`.
 
-Things you may want to cover:
+How the game runs:
 
-* Ruby version
+https://github.com/konami99/toy-robot-dash/assets/166879/db1e8fda-01c9-4a5e-8b8b-d60ba0cdec64
 
-* System dependencies
+# Setup
 
-* Configuration
+```
+bundle install
+rails db:seed # creating cells and building the relationships between them
+rails tailwindcss:build
+rails s
+```
+and visit localhost:3000
 
-* Database creation
+# Data Structure
+There are two models in this app, `Robot` and `Cell`. The table contains 25 cells.
 
-* Database initialization
+Each cell has x-coordinate and y-coordinate.
 
-* How to run the test suite
+The left-bottom cell is (0, 0).
 
-* Services (job queues, cache servers, search engines, etc.)
+Each cell also has references to its surrounding cells: `north`, `east`, `south` and `west`.
 
-* Deployment instructions
+When a robot is on a cell, a reference will be created to link the robot to the cell (`cell.robot`).
 
-* ...
+A robot has a `direction`, when robot is moving, turning left or right, we use `direction` to determine the next cell the robot will be on.
