@@ -73,9 +73,10 @@ body {
 
   #output {
     &.animate-flash-border {
-      animation: flash-border 1s infinite;
+      animation: flash-border 0.5s infinite;
     }
 
+    border-width: 5px;
     text-align: center;
   }
 }
