@@ -49,7 +49,7 @@ cell8.update(west: cell7, east: cell9, south: cell13, north: cell3)
 cell9.update(west: cell8, south: cell14, north: cell4)
 
 cell10.update(south: cell15, east: cell11, north: cell5)
-cell11.update(west: cell0, east: cell12, south: cell16, north: cell6)
+cell11.update(west: cell10, east: cell12, south: cell16, north: cell6)
 cell12.update(west: cell11, east: cell13, south: cell17, north: cell7)
 cell13.update(west: cell12, east: cell14, south: cell18, north: cell8)
 cell14.update(west: cell13, south: cell19, north: cell9)
